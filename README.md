@@ -14,6 +14,21 @@ body{
     align-items:center;
     background:linear-gradient(135deg,#ff9a9e,#fad0c4);
     font-family:'Segoe UI',sans-serif;
+    overflow:hidden;
+}
+
+/* Floating hearts */
+.heart-float{
+    position:absolute;
+    color:rgba(255,255,255,0.6);
+    font-size:20px;
+    animation:float 6s infinite linear;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);opacity:0;}
+    20%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
 }
 
 /* Envelope */
@@ -25,6 +40,7 @@ body{
     cursor:pointer;
     border-radius:12px;
     box-shadow:0 15px 40px rgba(0,0,0,0.35);
+    z-index:10;
 }
 
 .flap{
@@ -87,26 +103,6 @@ p{
     line-height:1.6;
 }
 
-/* Photo */
-.photo-box{
-    width:100%;
-    height:180px;
-    border:2px dashed #e91e63;
-    border-radius:14px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    margin-bottom:10px;
-}
-
-.photo-box img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:none;
-}
-
 button{
     background:#e91e63;
     color:white;
@@ -114,7 +110,7 @@ button{
     padding:10px 22px;
     border-radius:30px;
     cursor:pointer;
-    margin-top:10px;
+    margin-top:15px;
 }
 
 button:hover{
@@ -132,8 +128,14 @@ button:hover{
     100%{transform:scale(1);}
 }
 
-.teddy{
-    font-size:40px;
+/* Creative Art */
+.art{
+    margin:20px 0;
+    font-size:42px;
+}
+
+.ring{
+    font-size:36px;
     margin:10px 0;
 }
 </style>
@@ -141,7 +143,13 @@ button:hover{
 
 <body>
 
-<!-- 🎵 Let Me Love You (YouTube – hidden) -->
+<!-- Floating hearts -->
+<span class="heart-float" style="left:10%;">💖</span>
+<span class="heart-float" style="left:30%; animation-delay:2s;">💗</span>
+<span class="heart-float" style="left:60%; animation-delay:4s;">💕</span>
+<span class="heart-float" style="left:80%; animation-delay:1s;">💞</span>
+
+<!-- 🎵 Let Me Love You -->
 <iframe id="ytMusic"
     width="0"
     height="0"
@@ -162,21 +170,20 @@ button:hover{
                 Two beautiful years, countless memories,  
                 and a love that grows stronger every day.
             </p>
-            <div class="teddy">🧸💑🧸</div>
+            <div class="art">🧸💑🧸</div>
             <div class="heart">💖</div>
             <button onclick="nextPage(event)">Next ➜</button>
         </div>
 
         <!-- Page 2 -->
         <div class="page">
-            <h1>Our Moments 💕</h1>
-
-            <div class="photo-box">
-                <span id="text">Add Your Photo 📸</span>
-                <img id="img">
-            </div>
-
-            <input type="file" accept="image/*" onchange="loadImg(event)">
+            <h1>Our Love Story 💕</h1>
+            <p>
+                From small smiles to endless laughs,  
+                every moment with you feels magical.
+            </p>
+            <div class="ring">💍❤️💍</div>
+            <div class="art">✨💞✨</div>
             <button onclick="nextPage(event)">Next ➜</button>
         </div>
 
@@ -188,7 +195,7 @@ button:hover{
                 and my safe place.  
                 Here’s to forever… together ❤️
             </p>
-            <div class="teddy">🧸❤️🧸</div>
+            <div class="art">🧸❤️🧸</div>
             <div class="heart">💞</div>
             <p><i>Let me love you… always.</i></p>
         </div>
@@ -205,7 +212,6 @@ function openEnvelope(){
     if(!opened){
         document.querySelector('.envelope').classList.add('open');
 
-        // Play YouTube music
         const iframe=document.getElementById("ytMusic");
         iframe.src += "&autoplay=1";
 
@@ -219,17 +225,8 @@ function nextPage(e){
     pageIndex++;
     pages[pageIndex].classList.add('active');
 }
-
-function loadImg(e){
-    const img=document.getElementById('img');
-    const text=document.getElementById('text');
-    img.src=URL.createObjectURL(e.target.files[0]);
-    img.style.display="block";
-    text.style.display="none";
-}
 </script>
 
 </body>
 </html>
 
-    
