@@ -23,8 +23,8 @@ body{
     background:#e91e63;
     position:relative;
     cursor:pointer;
-    border-radius:10px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    border-radius:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.35);
 }
 
 .flap{
@@ -48,9 +48,9 @@ body{
     top:10px;
     left:10px;
     width:300px;
-    height:400px;
+    height:420px;
     background:white;
-    border-radius:15px;
+    border-radius:18px;
     padding:20px;
     display:none;
     flex-direction:column;
@@ -63,7 +63,7 @@ body{
 }
 
 @keyframes slideUp{
-    from{transform:translateY(100px);opacity:0;}
+    from{transform:translateY(120px);opacity:0;}
     to{transform:translateY(0);opacity:1;}
 }
 
@@ -78,6 +78,7 @@ body{
 
 h1{
     color:#e91e63;
+    margin-bottom:10px;
 }
 
 p{
@@ -86,15 +87,17 @@ p{
     line-height:1.6;
 }
 
+/* Photo */
 .photo-box{
     width:100%;
     height:180px;
     border:2px dashed #e91e63;
-    border-radius:12px;
+    border-radius:14px;
     display:flex;
     justify-content:center;
     align-items:center;
     overflow:hidden;
+    margin-bottom:10px;
 }
 
 .photo-box img{
@@ -108,8 +111,8 @@ button{
     background:#e91e63;
     color:white;
     border:none;
-    padding:10px 20px;
-    border-radius:25px;
+    padding:10px 22px;
+    border-radius:30px;
     cursor:pointer;
     margin-top:10px;
 }
@@ -119,7 +122,7 @@ button:hover{
 }
 
 .heart{
-    font-size:30px;
+    font-size:32px;
     animation:beat 1.2s infinite;
 }
 
@@ -128,15 +131,24 @@ button:hover{
     50%{transform:scale(1.3);}
     100%{transform:scale(1);}
 }
+
+.teddy{
+    font-size:40px;
+    margin:10px 0;
+}
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
-<audio id="music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+<!-- 🎵 Let Me Love You (YouTube – hidden) -->
+<iframe id="ytMusic"
+    width="0"
+    height="0"
+    src="https://www.youtube.com/embed/SMs0GnYze34?enablejsapi=1"
+    frameborder="0"
+    allow="autoplay">
+</iframe>
 
 <div class="envelope" onclick="openEnvelope()">
     <div class="flap"></div>
@@ -147,18 +159,20 @@ button:hover{
         <div class="page active">
             <h1>❤️ 2 Years of Togetherness ❤️</h1>
             <p>
-                Two beautiful years, countless memories, and a love that grows deeper every day.
+                Two beautiful years, countless memories,  
+                and a love that grows stronger every day.
             </p>
+            <div class="teddy">🧸💑🧸</div>
             <div class="heart">💖</div>
             <button onclick="nextPage(event)">Next ➜</button>
         </div>
 
         <!-- Page 2 -->
         <div class="page">
-            <h1>Our Moments 💑</h1>
+            <h1>Our Moments 💕</h1>
 
             <div class="photo-box">
-                <span id="text">Add Your Photo</span>
+                <span id="text">Add Your Photo 📸</span>
                 <img id="img">
             </div>
 
@@ -170,11 +184,13 @@ button:hover{
         <div class="page">
             <h1>Forever Us ✨</h1>
             <p>
-                Thank you for being my smile, my peace, and my safe place.  
-                Here’s to many more years of love, laughter, and togetherness.
+                Thank you for being my smile, my peace,  
+                and my safe place.  
+                Here’s to forever… together ❤️
             </p>
+            <div class="teddy">🧸❤️🧸</div>
             <div class="heart">💞</div>
-            <p><i>Always & Forever</i></p>
+            <p><i>Let me love you… always.</i></p>
         </div>
 
     </div>
@@ -188,7 +204,11 @@ const pages=document.querySelectorAll('.page');
 function openEnvelope(){
     if(!opened){
         document.querySelector('.envelope').classList.add('open');
-        document.getElementById('music').play();
+
+        // Play YouTube music
+        const iframe=document.getElementById("ytMusic");
+        iframe.src += "&autoplay=1";
+
         opened=true;
     }
 }
